@@ -47,6 +47,9 @@
             "name": "c100"
         },
         {
+            "name": "biohazard"
+        },
+        {
             "name": "box"
         },
         {
@@ -65,6 +68,9 @@
             "name": "emergency"
         },
         {
+            "name": "emergency-biohazard"
+        },
+        {
             "name": "random"
         },
         {
@@ -78,6 +84,9 @@
         },
         {
             "name": "crate"
+        },
+        {
+            "name": "girder"
         },
         {
             "name": "tank"
