@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared.EntityTable;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -106,14 +107,30 @@ public abstract partial class ESSharedVoteSystem : EntitySystem
         DebugTools.Assert(ent.Comp.Votes.Count > 0);
         var maxVote = ent.Comp.Votes.Values.Max(v => v.Count);
 
-        // Handle ties gracefully
-        var winningOptions = ent.Comp.Votes
-            .Where(p => p.Value.Count == maxVote)
-            .Select(p => p.Key)
-            .ToList();
+        ESVoteOption result;
+        switch (ent.Comp.Strategy)
+        {
+            case ResultStrategy.HighestValue:
+                // Handle ties gracefully
+                var winningOptions = ent.Comp.Votes
+                    .Where(p => p.Value.Count == maxVote)
+                    .Select(p => p.Key)
+                    .ToList();
 
-        // Random selection for tiebreak
-        var result = _random.Pick(winningOptions);
+                // Random selection for tiebreak
+                result = _random.Pick(winningOptions);
+                break;
+            case ResultStrategy.WeightedPick:
+                // Convert each option into a weight based on counts
+                var weights = ent.Comp.Votes
+                    .Select(p => (p.Key, 1f + p.Value.Count)) // + 1 so every option can be chosen
+                    .ToDictionary();
+                result = _random.Pick(weights);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
         SendVoteResultAnnouncement(ent, result);
 
         var ev = new ESVoteCompletedEvent(result);
