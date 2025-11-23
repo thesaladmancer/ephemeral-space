@@ -88,10 +88,7 @@ namespace Content.Server.GameTicking
                     {
                         if (LobbyEnabled)
                         {
-                            PlayerJoinLobby(session);
-                            // ES START
-                            AttachPlayerToLobbyCharacter(session);
-                            // ES END
+                            PlayerJoinLobby(session, true);
                         }
                         else
                             SpawnWaitDb();
@@ -190,7 +187,9 @@ namespace Content.Server.GameTicking
         {
             if (!silent)
                 _chatManager.DispatchServerMessage(session, Loc.GetString("game-ticker-player-join-game-message"));
-
+// ES START
+            _joinedPlayers.Add(session.UserId);
+// ES SEND
             _playerGameStatuses[session.UserId] = PlayerGameStatus.JoinedGame;
             _db.AddRoundPlayers(RoundId, session.UserId);
 
@@ -206,8 +205,16 @@ namespace Content.Server.GameTicking
             RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);
         }
 
-        private void PlayerJoinLobby(ICommonSession session)
+// ES START
+        public bool PlayerJoinLobby(ICommonSession session, bool attachCharacter = false)
         {
+            if (!LobbyEnabled)
+                return false;
+
+            if (attachCharacter)
+                AttachPlayerToLobbyCharacter(session);
+// ES END
+
             _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
             _db.AddRoundPlayers(RoundId, session.UserId);
 
@@ -216,6 +223,9 @@ namespace Content.Server.GameTicking
             RaiseNetworkEvent(GetStatusMsg(session), client);
             RaiseNetworkEvent(GetInfoMsg(), client);
             RaiseLocalEvent(new PlayerJoinedLobbyEvent(session));
+// ES START
+            return true;
+// ES END
         }
 
         private void ReqWindowAttentionAll()

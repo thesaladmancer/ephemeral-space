@@ -1,6 +1,5 @@
 using Content.Shared._ES.Lobby.Components;
 using Content.Shared.Actions;
-using Content.Shared.Buckle.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
 using Robust.Shared.Physics.Events;
@@ -12,14 +11,13 @@ namespace Content.Shared._ES.Lobby;
 // see client/server
 public abstract class ESSharedDiegeticLobbySystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] protected readonly SharedActionsSystem Actions = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ESReadyTriggerMarkerComponent, StartCollideEvent>(OnTriggerCollided);
-        SubscribeLocalEvent<ESTheatergoerMarkerComponent, UnbuckledEvent>(OnTheatergoerUnbuckled);
         SubscribeLocalEvent<ESOnPlayerReadyToggled>(OnPlayerReadyToggled);
     }
 
@@ -33,17 +31,15 @@ public abstract class ESSharedDiegeticLobbySystem : EntitySystem
         var ready = ev.GameStatus == PlayerGameStatus.ReadyToPlay;
         if (ready)
         {
-            _actions.AddAction(entity, ref theaterGoer.ConfigurePrefsActionEntity, theaterGoer.ConfigurePrefsAction);
+            Actions.AddAction(entity, ref theaterGoer.ConfigurePrefsActionEntity, theaterGoer.ConfigurePrefsAction);
         }
         else
         {
-            _actions.RemoveAction(entity, theaterGoer.ConfigurePrefsActionEntity);
+            Actions.RemoveAction(entity, theaterGoer.ConfigurePrefsActionEntity);
             theaterGoer.ConfigurePrefsActionEntity = null;
         }
         Dirty(entity, theaterGoer);
     }
-
-    protected abstract void OnTheatergoerUnbuckled(Entity<ESTheatergoerMarkerComponent> ent, ref UnbuckledEvent args);
 
     protected abstract void OnTriggerCollided(Entity<ESReadyTriggerMarkerComponent> ent, ref StartCollideEvent args);
 }
