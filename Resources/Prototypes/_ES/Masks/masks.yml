@@ -1,4 +1,18 @@
 # Crew masks
+
+- type: esMask
+  id: ESFruitVendor
+  name: es-mask-fruit-vendor-name
+  troupe: ESCrew
+  description: es-mask-fruit-vendor-desc
+  weight: 1
+  objectives:
+    id: ESObjectiveEatSummonedFruit
+  components:
+  - type: ActionGrant
+    actions:
+    - ESActionMaskSpawnFruit
+
 - type: esMask
   id: ESCitizen
   name: es-mask-citizen-name
