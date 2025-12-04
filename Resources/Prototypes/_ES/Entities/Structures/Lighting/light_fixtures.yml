@@ -1,0 +1,43 @@
+# Light fixtures used in ES maps -- separate from light tubes, which actually control the light values used
+# (although all fixtures here have pointlights set to the same value as their default tubes, for visualizing lighting
+# during the mapping process)
+
+# Used in departments. Brighter light than hallways for contrast, and can be controlled by lightswitches
+# Off by default. Intended flow is that lightswitches are off, then ppl come in and turn em on for vibes
+- type: entity
+  id: ESPoweredLightDepartment
+  parent: Poweredlight
+  name: light fixture
+  description: Draws power and produces light when equipped with a light tube.
+  suffix: ES, Departments
+  components:
+  - type: PointLight
+    color: "#ece2dd"
+    energy: 1.45
+  - type: PoweredLight
+    hasLampOnSpawn: ESLightTubeDepartment
+
+# Used in hallways. Dimmer light, to contrast with department lights (below)
+- type: entity
+  id: ESPoweredLightHallway
+  parent: Poweredlight
+  name: light fixture
+  description: Draws power and produces light when equipped with a light tube. Unresponsive to light switches.
+  suffix: ES, Hallway
+  components:
+  - type: PointLight
+    color: "#929291"
+  - type: PoweredLight
+    hasLampOnSpawn: ESLightTubeHallway
+  - type: DeviceNetwork
+    receiveFrequencyId: null
+
+# Small light fixtures used in maint or elsewhere (just so they're unresponsive to light switches)
+# Separate from regular ones, which get used in rooms normally and should still turn on/off
+- type: entity
+  id: ESPoweredSmallLightMaintenance
+  parent: PoweredSmallLight
+  suffix: Maintenance
+  components:
+  - type: DeviceNetwork
+    receiveFrequencyId: null
