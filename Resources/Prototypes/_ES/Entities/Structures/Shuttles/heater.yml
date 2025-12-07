@@ -1,0 +1,9 @@
+- type: entity
+  id: ESShuttleHeater
+  parent: BaseStructure
+  name: engine heater
+  description: Improves the long-term efficiency of thrusters, making them less likely to degrade over the course of years of extended use.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Shuttles/heater.rsi
+    state: heater

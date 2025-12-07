@@ -1,0 +1,27 @@
+- type: decal
+  id: ESChapelCornerNe
+  tags: ["station", "overlay"]
+  sprite:
+    sprite: _ES/Decals/chapel.rsi
+    state: chapel_corner_ne
+
+- type: decal
+  id: ESChapelCornerSe
+  tags: ["station", "overlay"]
+  sprite:
+    sprite: _ES/Decals/chapel.rsi
+    state: chapel_corner_se
+
+- type: decal
+  id: ESChapelCornerNw
+  tags: ["station", "overlay"]
+  sprite:
+    sprite: _ES/Decals/chapel.rsi
+    state: chapel_corner_nw
+
+- type: decal
+  id: ESChapelCornerSw
+  tags: ["station", "overlay"]
+  sprite:
+    sprite: _ES/Decals/chapel.rsi
+    state: chapel_corner_sw

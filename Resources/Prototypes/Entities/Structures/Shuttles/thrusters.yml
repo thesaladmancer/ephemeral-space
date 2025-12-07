@@ -90,7 +90,9 @@
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
   - type: Sprite
-    sprite: Structures/Shuttles/thruster.rsi
+# ES Start
+    sprite: _ES/Structures/Shuttles/thruster.rsi
+# ES End
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -188,7 +190,9 @@
     needsPower: false
     powerLoad: 0
   - type: Sprite
-    sprite: Structures/Shuttles/thruster.rsi
+# ES Start
+    sprite: _ES/Structures/Shuttles/thruster.rsi
+# ES End
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
