@@ -44,6 +44,9 @@ public sealed partial class ESMaskPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public ProtoId<ESTroupePrototype> Troupe;
 
+    [DataField]
+    public ProtoId<ESAuraPrototype> Aura;
+
     /// <summary>
     /// Description of what this role does.
     /// </summary>

@@ -20,6 +20,9 @@ es-mask-veteran-desc = Help the station by using your trusty sidearm to take car
 es-mask-guzzler-name = Guzzler
 es-mask-guzzler-desc = You have nothing but an endless desire to Consume Liquid, guzzle everything you can get your hands on.
 
+es-mask-empath-name = Empath
+es-mask-empath-desc = Use your mystic abilities to sense the auras of others and wildly misinterpret vague readings.
+
 # Traitor masks
 es-mask-troupe-traitor-examine = They're a fellow [bold][color=red]Traitor[/color][/bold] and a member of the [bold][color=red]Syndicate[/color][/bold]. Work together to complete the objectives.
 

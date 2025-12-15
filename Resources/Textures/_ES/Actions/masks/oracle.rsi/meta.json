@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "CC-BY-NC-SA-4.0",
+    "copyright": "Created by thesaladmancer on Github for Ephemeral Space",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "empath"
+        },
+        {
+            "name": "empath-on"
+        }
+    ]
+}

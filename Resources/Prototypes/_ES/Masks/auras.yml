@@ -1,0 +1,17 @@
+# Neutral Aura - For chill masks that just want to hang out or help people. Generally "crew aligned".
+- type: esAura
+  id: ESAuraNeutral
+  name: es-aura-neutral-name
+  color: white
+
+# Killer Aura - For masks that want to harm or KILL people.
+- type: esAura
+  id: ESAuraKiller
+  name: es-aura-killer-name
+  color: red
+
+# Strange Aura - For wildcard masks that haven't gained their intent/objective(s) yet.
+- type: esAura
+  id: ESAuraStrange
+  name: es-aura-strange-name
+  color: yellow

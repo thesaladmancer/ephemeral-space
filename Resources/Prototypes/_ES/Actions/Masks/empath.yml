@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseAction
+  id: ESActionMaskSenseAura
+  name: Sense Aura
+  description: Use this on potential evil-doers to sense their [color=plum][bold]intent![/bold][/color]
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/masks/oracle.rsi
+      state: empath
+    useDelay: 10 # Placeholder
+  - type: TargetAction
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - MobState # Placeholder
+    event: !type:ESSenseAuraActionEvent
+    canTargetSelf: false
